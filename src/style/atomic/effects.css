@@ -1,0 +1,122 @@
+* {
+    --inactive-color: lightgray;
+    --hover-color: gray;
+    --active-color: black;
+}
+
+* {
+    --circle-radius: 1rem;
+}
+
+.circle {
+    border-radius: var(--circle-radius);
+    width: calc(var(--circle-radius)*2);
+    height: calc(var(--circle-radius)*2);
+    text-align: center;
+}
+
+/* Ghost when inactive */
+
+.ghost-when-inactive {
+    background-color: none;
+    border: 2px solid var(--inactive-color);
+}
+
+.ghost-when-inactive:hover {
+    background-color: var(--hover-color);
+    border-color: var(--hover-color);
+}
+
+.ghost-when-inactive:active {
+    background-color: var(--active-color);
+    border-color: var(--active-color);
+}
+
+/* Hide background when inactive*/
+
+.hide-bg-when-inactive {
+    background-color: none;
+    border: none;
+}
+
+.hide-bg-when-inactive:hover {
+    background-color: var(--hover-color);
+}
+
+.hide-bg-when-inactive:active {
+    background-color: var(--active-color);
+}
+
+/* Hairline */
+
+.hairline {
+    background-color: var(--inactive-color);
+    border: none;
+}
+
+.hairline:hover {
+    background-color: var(--hover-color);
+}
+
+.hairline:active {
+    background-color: var(--active-color);
+}
+
+/* Pill */
+
+.pill {
+    border-radius: 1rem;
+    padding: 0.25rem 0.75rem;
+}
+
+/* Has depth */
+
+* {
+    --initial-depth: 0;
+    --hover-depth: 8;
+    --active-depth: 6;
+    --ms-per-px-depth: 15ms;
+    --ambient-shadow-color: rgba(0,0,0,0.5);
+    --key-shadow-color: rgba(0,0,0,0.5);
+}
+
+.has-depth {
+    box-shadow:
+        0 0 calc(var(--initial-depth)*3px) var(--ambient-shadow-color), /* Ambient shadow */
+        0 calc(var(--initial-depth)*0.75px) calc(var(--initial-depth)*1px) var(--key-shadow-color); /* Key shadow */
+    transition: 90ms;
+    transition-timing-function: ease-in-out;
+}
+
+.has-depth:hover {
+    box-shadow:
+        0 0 calc(var(--hover-depth)*3px) var(--ambient-shadow-color), /* Ambient shadow */
+        0 calc(var(--hover-depth)*0.75px) calc(var(--hover-depth)*1px) var(--key-shadow-color); /* Key shadow */
+}
+
+.has-depth:active {
+    box-shadow:
+        0 0 calc(var(--active-depth)*3px) var(--ambient-shadow-color), /* Ambient shadow */
+        0 calc(var(--active-depth)*0.75px) calc(var(--active-depth)*1px) var(--key-shadow-color); /* Key shadow */
+}
+
+.animated {
+    transition: 200ms;
+    transition-timing-function: ease-in-out;
+}
+
+.pop-out {
+    position: absolute;
+    padding: 4px;
+    margin: 32px;
+    transition: 120ms;
+    transition-timing-function: ease-out;
+    z-index: 0;
+}
+.pop-out:hover {
+    position: absolute;
+    transform: translate(-28px,-28px);
+    padding: 32px;
+    z-index: 1;
+    box-shadow: 0px 0px 16px #00000040, 0px 3px 8px #00000040;
+}

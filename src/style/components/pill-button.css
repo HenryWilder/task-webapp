@@ -1,0 +1,16 @@
+/* Button base */
+.pill-button {
+    cursor: pointer;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    transition: 100ms;
+    transition-timing-function: ease-out;
+}
+
+.pill-button:hover {
+    background-color: var(--color-accent);
+}
+
+.pill-button:active {
+    background-color: var(--color-main);
+}

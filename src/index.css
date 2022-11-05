@@ -1,4 +1,7 @@
-@import "./style/variables.css";
-@import "./style/layout.css";
-@import "./style/effects.css";
-@import "./style/typography.css";
+@import "./style/basic.css";
+@import "./style/atomic/color.css";
+@import "./style/atomic/effects.css";
+@import "./style/atomic/layout.css";
+@import "./style/atomic/spacing.css";
+@import "./style/atomic/typography.css";
+@import "./style/components/dropdown.css";

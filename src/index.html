@@ -10,32 +10,8 @@
 </head>
 <body>
     <div style="padding:16px">
-        <table id="task-list">
-            <tr>
-                <th>Task</th>
-                <th>Status</th>
-                <th>Dependencies</th>
-                <th>Due By</th>
-            </tr>
-            <tr id="base-task">
-                <td name="task-name">
-                    test
-                </td>
-                <td name="task-status" class="dropdown">
-                    status
-                    <div class="dropdown-content">
-                        <table>
-                            <tr><td><button onclick="parent.innerHTML">not started</button></td></tr>
-                            <tr><td><button onclick="">in progress</button></td></tr>
-                            <tr><td><button onclick="">completed</button></td></tr>
-                        </table>
-                    </div>
-                </td>
-                <td name="task-dependencies"></td>
-                <td name="task-dueby"></td>
-            </tr>
-        </table>
-        <button class="add-remove-button left" onclick="popTask()">-</button><button class="add-remove-button right" onclick="addTask()">+</button>
+        <button class="ghost-when-inactive pop-out pill" style="left: 32px;">Test</button>
+        <button class="ghost-when-inactive pop-out pill" style="left: 80px;">Test</button>
     </div>
 </body>
 </html>

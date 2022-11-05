@@ -1,0 +1,19 @@
+.dot-button {
+    text-align: center;
+    border-radius: 1rem;
+    width: 1rem;
+    height: 1rem;
+    color: white;
+    background-color: var(--color-ghost);
+    border: none !important;
+}
+
+.left {
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.right {
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}

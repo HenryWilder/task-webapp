@@ -1,0 +1,36 @@
+@import "./variables.css";
+
+* {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-size: medium;
+    color: var(--color-text);
+}
+
+/* Tables */
+
+table {
+    border-collapse: collapse;
+}
+
+tr:hover {
+    background-color: var(--color-ghost-highlight);
+}
+
+th {
+    border-bottom: 1px solid var(--color-ghost);
+    text-align: left;
+}
+
+td {
+    padding: 0.25em 0.5em;
+    background-color: inherit;
+}
+
+button {
+    cursor: pointer;
+}
