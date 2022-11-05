@@ -1,0 +1,13 @@
+* {
+    font-family: sans-serif;
+    font-size: medium;
+    color: var(--color-text);
+}
+
+th {
+    text-align: left;
+}
+
+.add-remove-button:hover {
+    text-align: center;
+}

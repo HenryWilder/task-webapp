@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th {
+    border-bottom: 1px solid var(--color-ghost);
+}
+
+td {
+    padding: 0.25em 0.5em;
+}
+
+.dropdown {
+    display: inline-block;
+}
+.dropdown::after {
+    content: '▾';
+}
+.dropdown:hover::after {
+    content: '▴';
+}
+
+.dropdown-content {
+    font-size: medium;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: inherit;
+    box-shadow: 0px 0px 10px #00000040;
+    z-index: 1;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.task-button {
+    border-radius: 2rem;
+    padding: 0.375rem 0.75rem; /* 3/8 vertically, 3/4 horizontally */
+}
+
+.add-remove-button {
+    border-radius: 1rem;
+    width: 1rem;
+    height: 1rem;
+}

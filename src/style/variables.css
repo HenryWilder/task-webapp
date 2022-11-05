@@ -1,0 +1,9 @@
+:root {
+    --color-main: rgb(14, 39, 185);
+    --color-accent: rgb(78, 100, 221);
+    --color-background: rgb(239, 241, 243);
+    --color-ghost-highlight: rgba(175, 176, 177, 0.125);
+    --color-ghost: rgb(175, 176, 177);
+    --color-text: rgb(17, 17, 17);
+    --color-wip: rgb(255, 0, 255);
+}
