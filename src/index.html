@@ -5,9 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="index.css"/>
-    <script src="./index.js"></script>
+    <!-- <link rel="stylesheet" href="index.css"/> -->
+    <!-- <script src="./index.js"></script> -->
     <style>
+        * {
+            background-color: var(--color-background);
+            color: var(--color-text);
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+            font-size: medium;
+            color: var(--color-text);
+        }
         td.space {
             border: 2px solid black;
             width: 64px;
@@ -15,6 +25,7 @@
             text-align: center;
             font-size: 32px;
             border-radius: 6px;
+            transition: 100ms;
         }
         /* td.space:hover {
             background-color: rgb(255,128,0);
@@ -30,6 +41,14 @@
             padding: 2px;
             margin: 4px;
             border-radius: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0px 0px 8px #0000002f;
+            transition: 200ms;
+            transition-timing-function: ease-out;
+        }
+        button:hover {
+            background-color: rgba(0,127,255, 0.25);
+            box-shadow: 0px 0px 9px #0000008f;
         }
     </style>
 </head>
@@ -88,7 +107,7 @@
         </table>
         <p style="margin-top:16px"><b>Conclusion:</b></p>
         <p id="conclusion">undefined</p>
-        <p id="arrow" style="font-size:32px; width:2em; height:2em; text-align: center; background-color: lightgray; padding:0.25em; border-radius: 8px;">❓</p>
+        <p id="arrow" style="margin-top:8px;font-size:32px; width:2em; height:2em; text-align: center; background-color: lightgray; padding:0.25em; border-radius: 8px;">❓</p>
 
         <script>
             let conclusion = document.getElementById("conclusion");
@@ -105,7 +124,7 @@
                 document.getElementById('ce'),
             ]
 
-            const activeStateButtonStyle = "background-color: rgb(0,128,255); border-color: rgb(0,128,255); border-style: solid;";
+            const activeStateButtonStyle = "background-color: rgb(0,128,255); border-color: rgb(0,128,255); border-style: solid; cursor: auto; box-shadow: none;";
             buttons.forEach((it) => {
                 it.addEventListener('click', (event) => {
                     buttons.forEach((what) => {
@@ -129,7 +148,7 @@
             }
             console.log(tbl);
 
-            const nodeHoverStyle = "background-color:rgb(0,127,255); border:none; color: transparent; text-shadow: 0 0 0 white;";
+            const nodeHoverStyle = "background-color:rgb(0,127,255); border:none; color: transparent; text-shadow: 0 0 0 rgba(64,64,255,0.125);";
             const safeCheckHoverStyle = "border: 4px solid rgb(255,63,63); color: transparent; text-shadow: 0 0 0 rgb(255,63,63);";
             const boundHoverStyle = "border: 4px solid rgb(255,127,0); color: transparent; text-shadow: 0 0 0 rgb(255,127,0);";
 
@@ -154,14 +173,14 @@
                             node.innerHTML = "❌";
                             bound.innerHTML = "❌";
                         } else {
-                            node.innerHTML = "✔️";
-                            bound.innerHTML = "✔️";
+                            node.innerHTML = "";
+                            bound.innerHTML = "";
                         }                        
 
                         if (safeCheckIsFilled) {
                             safeCheck.innerHTML = "❌";
                         } else {
-                            safeCheck.innerHTML = "✔️";
+                            safeCheck.innerHTML = "";
                         }
 
                         if (!boundIsFilled) {
