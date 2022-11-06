@@ -14,6 +14,7 @@
             height: 64px;
             text-align: center;
             font-size: 32px;
+            border-radius: 6px;
         }
         /* td.space:hover {
             background-color: rgb(255,128,0);
@@ -22,6 +23,8 @@
         table.board {
             border: 2px solid black;
             border-collapse: separate;
+            border-spacing: 8px;
+            border-radius: 12px;
         }
         button {
             padding: 2px;
@@ -38,7 +41,7 @@
     </div> -->
 
     <div style="padding:16px">
-        <div style="display: grid; grid-template-columns: 140px 140px 140px;">
+        <div style="display: grid; grid-template-columns: 140px 140px 140px; margin-bottom: 16px;">
             <button id="ho">Horizontal Odd</button>
             <button id="vo">Vertical Odd</button>
             <button id="co">Checker Odd</button>
@@ -83,8 +86,14 @@
                 <td class="space" id="e5"></td>
             </tr>
         </table>
+        <p style="margin-top:16px"><b>Conclusion:</b></p>
+        <p id="conclusion">undefined</p>
+        <p id="arrow" style="font-size:32px; width:2em; height:2em; text-align: center; background-color: lightgray; padding:0.25em; border-radius: 8px;">❓</p>
 
         <script>
+            let conclusion = document.getElementById("conclusion");
+            let arrow = document.getElementById("arrow");
+
             let state = "ho";
             let buttons = [
                 document.getElementById('ho'),
@@ -120,35 +129,71 @@
             }
             console.log(tbl);
 
-            const nodeHoverStyle = "background-color:rgb(0,128,255); border:none;";
-            const boundHoverStyle = "border: 4px solid rgb(255,128,0);";
+            const nodeHoverStyle = "background-color:rgb(0,127,255); border:none; color: transparent; text-shadow: 0 0 0 white;";
+            const safeCheckHoverStyle = "border: 4px solid rgb(255,63,63); color: transparent; text-shadow: 0 0 0 rgb(255,63,63);";
+            const boundHoverStyle = "border: 4px solid rgb(255,127,0); color: transparent; text-shadow: 0 0 0 rgb(255,127,0);";
 
             for (let y = 0; y < 5; ++y) {
                 for (let x = 0; x < 5; ++x) {
                     let node  = tbl.at(y).at(x);
+                    let safeCheck = tbl.at(y).at(x < 2 ? x + 1 : x - 1);
                     let bound = tbl.at(y).at(x < 2 ? x + 2 : x - 2);
                     node.addEventListener("mouseover", (event1) => {
                         node.style = nodeHoverStyle;
+                        safeCheck.style = safeCheckHoverStyle;
                         bound.style = boundHoverStyle;
-                        let spaceIsFilled = false;
-                        switch (state) {
-                            case 'ho': spaceIsFilled = (y % 2) == 0; break;
-                            case 'vo': spaceIsFilled = (x % 2) == 0; break;
-                            case 'co': spaceIsFilled = ((y*5+x) % 2) == 0; break;
-                            case 'he': spaceIsFilled = (y % 2) == 1; break;
-                            case 've': spaceIsFilled = (x % 2) == 1; break;
-                            case 'ce': spaceIsFilled = ((y*5+x) % 2) == 1; break;
+                        let boundIsFilled = false;
+                        let eq = (state[1] == 'e' ? 1 : 0);
+                        switch (state[0]) {
+                            case 'h': boundIsFilled = (y % 2) == eq; break;
+                            case 'v': boundIsFilled = (x % 2) == eq; break;
+                            case 'c': boundIsFilled = ((y*5+x) % 2) == eq; break;
                         }
-                        if (spaceIsFilled) {
-                            node.innerHTML = "X";
-                            bound.innerHTML = "X";
+                        let safeCheckIsFilled = state[0]=='h' ? boundIsFilled : !boundIsFilled;
+                        if (boundIsFilled) {
+                            node.innerHTML = "❌";
+                            bound.innerHTML = "❌";
+                        } else {
+                            node.innerHTML = "✔️";
+                            bound.innerHTML = "✔️";
+                        }                        
+
+                        if (safeCheckIsFilled) {
+                            safeCheck.innerHTML = "❌";
+                        } else {
+                            safeCheck.innerHTML = "✔️";
+                        }
+
+                        if (!boundIsFilled) {
+                            conclusion.innerHTML = "Stay put";
+                            arrow.innerHTML = "❌";
+                        } else if (safeCheckIsFilled) {
+                            if (y > 0) {
+                                conclusion.innerHTML = "Move up";
+                                arrow.innerHTML = "🠅";
+                            } else {
+                                conclusion.innerHTML = "Move down";
+                                arrow.innerHTML = "🠇";
+                            }
+                        } else {
+                            if (x > 0) {
+                                conclusion.innerHTML = "Move left";
+                                arrow.innerHTML = "🠄";
+                            } else {
+                                conclusion.innerHTML = "Move right";
+                                arrow.innerHTML = "🠆";
+                            }
                         }
                     });
                     node.addEventListener("mouseleave", (event2) => {
                         node.style = "";
+                        safeCheck.style = "";
                         bound.style = "";
                         node.innerHTML = "";
+                        safeCheck.innerHTML = "";
                         bound.innerHTML = "";
+                        conclusion.innerHTML = "Undefined";
+                        arrow.innerHTML = "❓";
                     });
                 }
             }
