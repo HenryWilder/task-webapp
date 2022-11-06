@@ -7,11 +7,101 @@
     <title>Document</title>
     <link rel="stylesheet" href="index.css"/>
     <script src="./index.js"></script>
+    <style>
+        td.space {
+            border: 2px solid black;
+            width: 64px;
+            height: 64px;
+            text-align: center;
+        }
+        /* td.space:hover {
+            background-color: rgb(255,128,0);
+            background-color: rgb(0,128,255);
+        } */
+        table.board {
+            border: 2px solid black;
+            border-collapse: separate;
+        }
+    </style>
 </head>
 <body>
-    <div style="padding:16px">
+    <!-- <div style="padding:16px">
         <button class="ghost-when-inactive pop-out pill" style="left: 32px;">Test</button>
-        <button class="ghost-when-inactive pop-out pill" style="left: 80px;">Test</button>
+        <button class="hide-when-inactive pop-out pill" style="left: 80px;border-color:#00000000;backgron">Test</button>
+        <button class="ghost-when-inactive pop-out pill fogged-glass" style="left: 80px;">Test</button>
+    </div> -->
+
+    <div style="padding:16px">
+        <button class="ghost-when-inactive" style="left: 32px;">Test</button>
+        <table class="board">
+            <tr>
+                <td class="space" id="a1"></td>
+                <td class="space" id="b1"></td>
+                <td class="space" id="c1"></td>
+                <td class="space" id="d1"></td>
+                <td class="space" id="e1"></td>
+            </tr>
+            <tr>
+                <td class="space" id="a2"></td>
+                <td class="space" id="b2"></td>
+                <td class="space" id="c2"></td>
+                <td class="space" id="d2"></td>
+                <td class="space" id="e2"></td>
+            </tr>
+            <tr>
+                <td class="space" id="a3"></td>
+                <td class="space" id="b3"></td>
+                <td class="space" id="c3"></td>
+                <td class="space" id="d3"></td>
+                <td class="space" id="e3"></td>
+            </tr>
+            <tr>
+                <td class="space" id="a4"></td>
+                <td class="space" id="b4"></td>
+                <td class="space" id="c4"></td>
+                <td class="space" id="d4"></td>
+                <td class="space" id="e4"></td>
+            </tr>
+            <tr>
+                <td class="space" id="a5"></td>
+                <td class="space" id="b5"></td>
+                <td class="space" id="c5"></td>
+                <td class="space" id="d5"></td>
+                <td class="space" id="e5"></td>
+            </tr>
+        </table>
+
+        <script>
+            const columnNames = ['a','b','c','d','e'];
+            // Todo: refactor this (not sure why map wasn't working...)
+
+            let tbl = Array(5);
+            for (let y = 0; y < 5; ++y) {
+                tbl[y] = Array(5);
+                for (let x = 0; x < 5; ++x) {
+                    tbl[y][x] = document.getElementById(`${columnNames[x]}${y+1}`);
+                }
+            }
+            console.log(tbl);
+
+            const nodeHoverStyle = "background-color:rgb(0,128,255); border:none;";
+            const boundHoverStyle = "border: 4px solid rgb(255,128,0);";
+
+            for (let y = 0; y < 5; ++y) {
+                for (let x = 0; x < 5; ++x) {
+                    let node  = tbl.at(y).at(x);
+                    let bound = tbl.at(y).at(x < 2 ? x + 2 : x - 2);
+                    node.addEventListener("mouseover", (event1) => {
+                        node.style = nodeHoverStyle;
+                        bound.style = boundHoverStyle;
+                    });
+                    node.addEventListener("mouseleave", (event2) => {
+                        node.style = "";
+                        bound.style = "";
+                    });
+                }
+            }
+        </script>
     </div>
 </body>
 </html>
