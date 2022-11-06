@@ -13,6 +13,7 @@
             width: 64px;
             height: 64px;
             text-align: center;
+            font-size: 32px;
         }
         /* td.space:hover {
             background-color: rgb(255,128,0);
@@ -21,6 +22,11 @@
         table.board {
             border: 2px solid black;
             border-collapse: separate;
+        }
+        button {
+            padding: 2px;
+            margin: 4px;
+            border-radius: 1.5rem;
         }
     </style>
 </head>
@@ -32,7 +38,14 @@
     </div> -->
 
     <div style="padding:16px">
-        <button class="ghost-when-inactive" style="left: 32px;">Test</button>
+        <div style="display: grid; grid-template-columns: 140px 140px 140px;">
+            <button id="ho">Horizontal Odd</button>
+            <button id="vo">Vertical Odd</button>
+            <button id="co">Checker Odd</button>
+            <button id="he">Horizontal Even</button>
+            <button id="ve">Vertical Even</button>
+            <button id="ce">Checker Even</button>
+        </div>
         <table class="board">
             <tr>
                 <td class="space" id="a1"></td>
@@ -72,9 +85,32 @@
         </table>
 
         <script>
+            let state = "ho";
+            let buttons = [
+                document.getElementById('ho'),
+                document.getElementById('vo'),
+                document.getElementById('co'),
+
+                document.getElementById('he'),
+                document.getElementById('ve'),
+                document.getElementById('ce'),
+            ]
+
+            const activeStateButtonStyle = "background-color: rgb(0,128,255); border-color: rgb(0,128,255); border-style: solid;";
+            buttons.forEach((it) => {
+                it.addEventListener('click', (event) => {
+                    buttons.forEach((what) => {
+                        what.style = "";
+                    });
+                    event.target.style = activeStateButtonStyle;
+                    state = it.id;
+                    console.log(`new state: ${state}`);
+                })
+            });
+            buttons[0].style = activeStateButtonStyle;
+
             const columnNames = ['a','b','c','d','e'];
             // Todo: refactor this (not sure why map wasn't working...)
-
             let tbl = Array(5);
             for (let y = 0; y < 5; ++y) {
                 tbl[y] = Array(5);
@@ -94,10 +130,25 @@
                     node.addEventListener("mouseover", (event1) => {
                         node.style = nodeHoverStyle;
                         bound.style = boundHoverStyle;
+                        let spaceIsFilled = false;
+                        switch (state) {
+                            case 'ho': spaceIsFilled = (y % 2) == 0; break;
+                            case 'vo': spaceIsFilled = (x % 2) == 0; break;
+                            case 'co': spaceIsFilled = ((y*5+x) % 2) == 0; break;
+                            case 'he': spaceIsFilled = (y % 2) == 1; break;
+                            case 've': spaceIsFilled = (x % 2) == 1; break;
+                            case 'ce': spaceIsFilled = ((y*5+x) % 2) == 1; break;
+                        }
+                        if (spaceIsFilled) {
+                            node.innerHTML = "X";
+                            bound.innerHTML = "X";
+                        }
                     });
                     node.addEventListener("mouseleave", (event2) => {
                         node.style = "";
                         bound.style = "";
+                        node.innerHTML = "";
+                        bound.innerHTML = "";
                     });
                 }
             }
