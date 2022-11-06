@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Thingy</title>
+    <style>
+        :root {
+            --theme-color-back: black;
+            --theme-color-text: white;
+            --theme-color-accent: #8000ff;
+            --theme-color-divider: #404040;
+        }
+        * {
+            background-color: var(--theme-color-back);
+            font-family: sans-serif;
+            color: var(--theme-color-text);
+            margin: 0;
+            padding: 0;
+        }
+        .accented {
+            background-color: var(--theme-color-accent);
+            border-radius: 1rem;
+        }
+        .layout-table {
+            width: 100%;
+            height: 100%;
+            border-collapse: collapse;
+        }
+        .post-table {
+            width:100%;
+            height: 100%;
+            border-collapse: collapse;
+            border-bottom: 1px solid var(--theme-color-divider);
+        }
+        .spacer {
+            display: flex;
+        }
+        .panel-left {
+            vertical-align: top;
+            width: 200px;
+            height: 100vh;
+            padding: 10px;
+            border-right: 1px solid var(--theme-color-divider);
+        }
+        .panel-center {
+            vertical-align: top;
+            width: 600px;
+        }
+        .panel-right {
+            vertical-align: top;
+            width: 300px;
+            height: 100vh;
+            border-left: 1px solid var(--theme-color-divider);
+        }
+
+        .navigation-button {
+            background-color: transparent;
+            padding: 0.75rem 1.25rem;
+            margin: 10px;
+            width: fit-content;
+            height: 1.25rem;
+            font-size: large;
+            border-radius: 1.5rem;
+            transition: 100ms;
+            transition-timing-function: ease-in;
+        }
+        .navigation-button:hover {
+            background-color: #80808040;
+            transition: 200ms;
+            transition-timing-function: ease-out;
+        }
+        .bird-button:hover {
+            background-color: #0080ff40;
+        }
+    </style>
+</head>
+<body>
+    <table class="layout-table">
+        <td class="spacer"></td>
+        <td class="panel-left">
+            <div class="navigation-button bird-button">.</div>
+            <div class="navigation-button">Home</div>
+            <div class="navigation-button">Explore</div>
+            <div class="navigation-button">Notifications</div>
+            <div class="navigation-button">Messages</div>
+            <div class="navigation-button">Bookmarks</div>
+            <div class="navigation-button">Profile</div>
+            <div class="navigation-button">More</div>
+        </td>
+        <td class="panel-center">
+            <table class="post-table">
+                <tr><td>
+                    center
+                </td></tr>
+            </table>
+        </td>
+        <td class="panel-right">
+            right
+        </td>
+        <td class="spacer"></td>
+    </table>
+</body>
+</html>
